@@ -1,15 +1,29 @@
 import { create } from "zustand"
 
-export const useCartStore = create((set: any) => ({
+interface CartItem {
+  id: string
+  title: string
+  price: number
+  quantity: number
+}
+
+interface CartState {
+  items: CartItem[]
+  addItem: (item: CartItem) => void
+  removeItem: (id: string) => void
+  clearCart: () => void
+}
+
+export const useCartStore = create<CartState>((set) => ({
   items: [],
 
-  addItem: (item: any) =>
-    set((state: any) => {
-      const exist = state.items.find((i: any) => i.id === item.id)
+  addItem: (item) =>
+    set((state) => {
+      const exist = state.items.find((i) => i.id === item.id)
 
       if (exist) {
         return {
-          items: state.items.map((i: any) =>
+          items: state.items.map((i) =>
             i.id === item.id
               ? { ...i, quantity: i.quantity + 1 }
               : i
@@ -22,9 +36,9 @@ export const useCartStore = create((set: any) => ({
       }
     }),
 
-  removeItem: (id: string) =>
-    set((state: any) => ({
-      items: state.items.filter((i: any) => i.id !== id),
+  removeItem: (id) =>
+    set((state) => ({
+      items: state.items.filter((i) => i.id !== id),
     })),
 
   clearCart: () => set({ items: [] }),
