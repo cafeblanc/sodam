@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { signIn, signUp } from "@/services/auth.service"
 
@@ -9,6 +9,8 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const passwordRef = useRef<HTMLInputElement>(null)
 
   const handleLogin = async () => {
     try {
@@ -32,23 +34,41 @@ export default function LoginPage() {
     <div style={{ padding: 20 }}>
       <h1>로그인</h1>
 
-      <input
-        placeholder="이메일"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleLogin()
+        }}
+      >
+        {/* 이메일 */}
+        <input
+          placeholder="이메일"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault()
+              passwordRef.current?.focus()
+            }
+          }}
+        />
 
-      <input
-        type="password"
-        placeholder="비밀번호"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        {/* 비밀번호 */}
+        <input
+          ref={passwordRef}
+          type="password"
+          placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <div style={{ marginTop: 10 }}>
-        <button onClick={handleLogin}>로그인</button>
-        <button onClick={handleSignup}>회원가입</button>
-      </div>
+        <div style={{ marginTop: 10 }}>
+          <button type="submit">로그인</button>
+          <button type="button" onClick={handleSignup}>
+            회원가입
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
