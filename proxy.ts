@@ -33,6 +33,12 @@ export async function proxy(req: NextRequest) {
   }
 
   // 🔒 role 체크
+  if (!user && (
+  req.nextUrl.pathname.startsWith("/admin") ||
+  req.nextUrl.pathname.startsWith("/orders")
+)) {
+  return NextResponse.redirect(new URL("/login", req.url))
+}
   if (user && req.nextUrl.pathname.startsWith("/admin")) {
     const { data } = await supabase
       .from("users")

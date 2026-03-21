@@ -1,21 +1,30 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { getMyOrders } from "@/services/order.service"
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([])
+  const router = useRouter()
 
   useEffect(() => {
     const load = async () => {
-      const data = await getMyOrders()
-      setOrders(data)
+      try {
+        const data = await getMyOrders()
+        setOrders(data)
+      } catch (e: any) {
+        if (e.message.includes("로그인이 필요합니다")) {
+          router.push("/login")
+        }
+      }
     }
+
     load()
   }, [])
 
   return (
-    <div>
+    <div style={{ padding: 20 }}>
       <h1>내 주문</h1>
 
       {orders.map((order) => (
