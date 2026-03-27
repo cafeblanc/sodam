@@ -1,51 +1,19 @@
-"use client"
-
-import { useState } from "react"
 import { supabase } from "@/lib/supabaseClient"
-import { useRouter } from "next/navigation"
 
-export default function SignupPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const router = useRouter()
-
-  const handleSignup = async () => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-
-    if (error) {
-      alert(error.message)
-      return
-    }
-
-    alert("회원가입 완료")
-    router.push("/login")
-  }
+export default async function HomePage() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   return (
     <div style={{ padding: 20 }}>
-      <h2>회원가입</h2>
+      <h1>쇼핑몰</h1>
 
-      <input
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <br /><br />
-
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <br /><br />
-
-      <button onClick={handleSignup}>가입</button>
+      {user ? (
+        <p>로그인됨: {user.email}</p>
+      ) : (
+        <p>비로그인 상태</p>
+      )}
     </div>
   )
 }
