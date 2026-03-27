@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { supabase } from "@/lib/supabaseClient"
 
 export default async function HomePage() {
@@ -14,6 +15,10 @@ export default async function HomePage() {
       ) : (
         <p>비로그인 상태</p>
       )}
+
+      <br />
+
+      <Link href="/products">상품 보러가기</Link>
     </div>
   )
 }
