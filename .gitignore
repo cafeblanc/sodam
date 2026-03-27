@@ -6,6 +6,8 @@
 .env
 .env.local
 .env.*.local
+node_modules
+.next
 
 >>>>>>> c993a58d337638c1d437ecdc201e228e82c6d5e3
 # dependencies
