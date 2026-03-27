@@ -1,30 +1,26 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import { getProducts } from "@/services/product.service"
-import type { Product } from "@/types/product"
 
-export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>([])
-
-  useEffect(() => {
-    const load = async () => {
-      const data = await getProducts()
-      setProducts(data)
-    }
-
-    load()
-  }, [])
+export default async function ProductsPage() {
+  const products = await getProducts()
 
   return (
-    <div>
+    <div style={{ padding: 20 }}>
       <h1>상품 목록</h1>
 
-      {products.map((p) => (
-        <div key={p.id} style={{ border: "1px solid #ccc", margin: 10 }}>
-          <h3>{p.title}</h3>
-          <p>{p.price}원</p>
-          {p.image_url && <img src={p.image_url} width={120} />}
+      {products.length === 0 && <p>상품 없음</p>}
+
+      {products.map((p: any) => (
+        <div
+          key={p.id}
+          style={{
+            border: "1px solid #ccc",
+            padding: 10,
+            marginBottom: 10,
+          }}
+        >
+          <h3>{p.name}</h3>
+          <p>{p.description}</p>
+          <strong>{p.price}원</strong>
         </div>
       ))}
     </div>
