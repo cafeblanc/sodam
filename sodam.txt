@@ -1,0 +1,58 @@
+*  최종구조
+
+shop-project/
+
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── index.tsx
+│   │   │   ├── product/
+│   │   │   ├── cart/
+│   │   │   ├── checkout/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/   ← API 연결
+│   │   ├── styles/
+│   │   └── utils/
+│   └── package.json
+
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── services/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── middleware/
+│   │   ├── config/
+│   │   └── app.js
+│   └── package.json
+
+├── database/
+│   ├── schema.sql
+│   └── seed.sql
+
+├── shared/
+│   ├── types/
+│   └── constants/
+
+└── README.md
+
+
+👉 이 프로젝트는 “프로토타입”이 아니라 “실서비스 구조”로 갑니다
+
+신규 프로젝트 생성 = 정답
+Supabase 단일화 필수
+Route Group 구조 필수
+
+1. sodam 프로젝트 생성 완료
+2. 기본 실행 확인 (localhost:3000)
+
+"초기 구조 만들어줘"
+
+✔ 폴더 구조 생성
+✔ 기본 파일 전체 코드
+✔ 에러 없는 상태로 초기 부팅
+
+이번 프로젝트는
+“처음부터 끝까지 깨지지 않게”
+구조 중심으로 진행합니다.

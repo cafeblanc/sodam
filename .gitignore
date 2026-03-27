@@ -1,5 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+<<<<<<< HEAD
+=======
+# .gitignore 파일
+.env
+.env.local
+.env.*.local
+
+>>>>>>> c993a58d337638c1d437ecdc201e228e82c6d5e3
 # dependencies
 /node_modules
 /.pnp

@@ -1,5 +1,6 @@
 {
   "name": "sodam",
+<<<<<<< HEAD
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -21,6 +22,30 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
+=======
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.9.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "@tosspayments/payment-sdk": "^1.9.2",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+>>>>>>> c993a58d337638c1d437ecdc201e228e82c6d5e3
     "typescript": "^5"
   }
 }
